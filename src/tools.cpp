@@ -23,7 +23,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
         return RMSE;
     }
     
-    for (int i=0; i<estimations.size(); i++) {
+    for (int i=0; i<estimations.size(); ++i) {
         Eigen::VectorXd residual = estimations[i]-ground_truth[i];
         residual = residual.array()*residual.array();
         RMSE+=residual;
@@ -43,10 +43,10 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
     * Calculate a Jacobian here.
   */
     Eigen::MatrixXd Hj(3,4);
-    float px = x_state[0];
-    float py  = x_state[1];
-    float vx = x_state[2];
-    float vy = x_state[3];
+    float px = x_state(0);
+    float py  = x_state(1);
+    float vx = x_state(2);
+    float vy = x_state(3);
     
     float c1 = px*px+py*py;
     float c2 = sqrt(c1);
